@@ -1,11 +1,12 @@
 import Link from "next/link";
+import Image from "next/image";
 import { projects } from "@/data/projects";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Mail, MapPin, GraduationCap, Server, Code, Database } from "lucide-react";
 
-// Menggunakan kembali custom SVG Github agar terhindar dari error import lucide-react
+// Custom SVG Github agar terhindar dari error import lucide-react
 const GithubIcon = ({ className }: { className?: string }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -23,49 +24,52 @@ const GithubIcon = ({ className }: { className?: string }) => (
 );
 
 export default function Home() {
+  const internshipProjects = projects.filter((p) => p.category === "internship");
+  const sideProjects = projects.filter((p) => p.category === "side");
+
   return (
-    <main className="min-h-screen bg-zinc-950 text-zinc-50 p-6 md:p-24 selection:bg-zinc-800">
+    <main className="min-h-screen bg-zinc-50 text-zinc-900 p-6 md:p-24 selection:bg-zinc-200">
       <div className="max-w-5xl mx-auto space-y-20">
 
         {/* Hero Section */}
         <section className="space-y-6 pt-10">
           <div className="space-y-2">
-            <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-zinc-100 to-zinc-500 pb-2">
+            <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-zinc-900 to-zinc-500 pb-2">
               Muhammad Faturahman
             </h1>
-            <h2 className="text-2xl text-zinc-300 font-medium">
+            <h2 className="text-2xl text-zinc-600 font-medium">
               Full Stack Web Developer
             </h2>
           </div>
 
-          <p className="text-lg md:text-xl text-zinc-400 max-w-2xl leading-relaxed">
+          <p className="text-lg md:text-xl text-zinc-600 max-w-2xl leading-relaxed">
             Membangun aplikasi web modern berkinerja tinggi dengan arsitektur decoupled. Berpengalaman dalam menggabungkan ekosistem frontend seperti Next.js & React dengan keandalan backend Laravel maupun Node.js.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-3 text-zinc-400 text-sm">
+          <div className="flex flex-col sm:flex-row gap-3 text-zinc-600 text-sm">
             <div className="flex items-center gap-2">
-              <MapPin className="h-4 w-4" />
+              <MapPin className="h-4 w-4 text-zinc-500" />
               <span>Yogyakarta, Indonesia</span>
             </div>
-            <div className="hidden sm:block text-zinc-700">•</div>
+            <div className="hidden sm:block text-zinc-300">•</div>
             <div className="flex items-center gap-2">
-              <GraduationCap className="h-4 w-4" />
+              <GraduationCap className="h-4 w-4 text-zinc-500" />
               <span>S1 Informatika, Univ. AMIKOM Yogyakarta (IPK 3.64)</span>
             </div>
           </div>
 
           <div className="flex flex-wrap gap-4 pt-4">
             <Link href="https://github.com/cimisachimi" target="_blank">
-              <Button variant="default" className="bg-zinc-100 text-zinc-900 hover:bg-zinc-300">
+              <Button variant="default" className="bg-zinc-900 text-zinc-50 hover:bg-zinc-800 shadow-sm">
                 <GithubIcon className="mr-2 h-4 w-4" /> GitHub
               </Button>
             </Link>
             <Link href="mailto:emailanda@example.com">
-              <Button variant="outline" className="border-zinc-800 hover:bg-zinc-900 hover:text-zinc-50">
+              <Button variant="outline" className="border-zinc-300 text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 shadow-sm">
                 <Mail className="mr-2 h-4 w-4" /> Email
               </Button>
             </Link>
-            <Button variant="outline" className="border-zinc-800 hover:bg-zinc-900 hover:text-zinc-50">
+            <Button variant="outline" className="border-zinc-300 text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 shadow-sm">
               Download CV
             </Button>
           </div>
@@ -73,59 +77,71 @@ export default function Home() {
 
         {/* Skills & Tech Stack Section */}
         <section className="space-y-6">
-          <h2 className="text-2xl font-semibold border-b border-zinc-800 pb-4">Keahlian Teknis</h2>
+          <h2 className="text-2xl font-semibold border-b border-zinc-200 pb-4 text-zinc-900">Keahlian Teknis</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Card className="bg-zinc-900/50 border-zinc-800">
+            <Card className="bg-white border-zinc-200 shadow-sm hover:shadow-md transition-shadow">
               <CardHeader className="pb-2">
-                <Code className="h-6 w-6 mb-2 text-zinc-400" />
-                <CardTitle className="text-lg text-zinc-100">Frontend</CardTitle>
+                <Code className="h-6 w-6 mb-2 text-zinc-600" />
+                <CardTitle className="text-lg text-zinc-900">Frontend</CardTitle>
               </CardHeader>
-              <CardContent className="text-zinc-400 text-sm">
+              <CardContent className="text-zinc-600 text-sm">
                 Next.js, React, TypeScript, Tailwind CSS, shadcn/ui.
               </CardContent>
             </Card>
-            <Card className="bg-zinc-900/50 border-zinc-800">
+            <Card className="bg-white border-zinc-200 shadow-sm hover:shadow-md transition-shadow">
               <CardHeader className="pb-2">
-                <Database className="h-6 w-6 mb-2 text-zinc-400" />
-                <CardTitle className="text-lg text-zinc-100">Backend & Database</CardTitle>
+                <Database className="h-6 w-6 mb-2 text-zinc-600" />
+                <CardTitle className="text-lg text-zinc-900">Backend & Database</CardTitle>
               </CardHeader>
-              <CardContent className="text-zinc-400 text-sm">
+              <CardContent className="text-zinc-600 text-sm">
                 Laravel (PHP), Node.js, Express, MySQL, PostgreSQL, Prisma ORM.
               </CardContent>
             </Card>
-            <Card className="bg-zinc-900/50 border-zinc-800">
+            <Card className="bg-white border-zinc-200 shadow-sm hover:shadow-md transition-shadow">
               <CardHeader className="pb-2">
-                <Server className="h-6 w-6 mb-2 text-zinc-400" />
-                <CardTitle className="text-lg text-zinc-100">Infrastruktur & Ops</CardTitle>
+                <Server className="h-6 w-6 mb-2 text-zinc-600" />
+                <CardTitle className="text-lg text-zinc-900">Infrastruktur & Ops</CardTitle>
               </CardHeader>
-              <CardContent className="text-zinc-400 text-sm">
+              <CardContent className="text-zinc-600 text-sm">
                 Ubuntu VPS, Nginx (Reverse Proxy), PM2, aaPanel, RESTful API Design.
               </CardContent>
             </Card>
           </div>
         </section>
 
-        {/* Projects Section */}
+        {/* SECTION 1: PROYEK MAGANG & PROFESIONAL */}
         <section className="space-y-6">
-          <h2 className="text-2xl font-semibold border-b border-zinc-800 pb-4">Proyek Terpilih</h2>
+          <h2 className="text-2xl font-semibold border-b border-zinc-200 pb-4 text-zinc-900">Proyek Magang & Profesional</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {projects.map((project) => (
+            {internshipProjects.map((project) => (
               <Card
                 key={project.id}
-                className="bg-zinc-900 border-zinc-800 flex flex-col transition-all duration-300 hover:border-zinc-600 hover:-translate-y-1 hover:shadow-2xl hover:shadow-zinc-900/50"
+                className="bg-white border-zinc-200 flex flex-col transition-all duration-300 hover:border-zinc-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-zinc-200/50 overflow-hidden group"
               >
+                {/* Komponen Gambar */}
+                {project.imageUrl && (
+                  <div className="relative w-full h-48 sm:h-56 overflow-hidden border-b border-zinc-100 bg-zinc-100">
+                    <Image
+                      src={project.imageUrl}
+                      alt={`Screenshot ${project.title}`}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                )}
+
                 <CardHeader>
                   <div className="flex justify-between items-start gap-4">
                     <div>
-                      <CardTitle className="text-xl text-zinc-50">{project.title}</CardTitle>
-                      <CardDescription className="text-zinc-400 mt-1 font-medium">
+                      <CardTitle className="text-xl text-zinc-900">{project.title}</CardTitle>
+                      <CardDescription className="text-zinc-600 mt-1 font-medium">
                         {project.role}
                       </CardDescription>
                     </div>
                     {project.link && project.link !== "#" && (
                       <Link href={project.link} target="_blank" rel="noopener noreferrer" aria-label={`Kunjungi ${project.title}`}>
-                        <Button variant="ghost" size="icon" className="hover:bg-zinc-800 shrink-0">
-                          <ExternalLink className="h-5 w-5 text-zinc-300" />
+                        <Button variant="ghost" size="icon" className="hover:bg-zinc-100 text-zinc-500 shrink-0">
+                          <ExternalLink className="h-5 w-5" />
                         </Button>
                       </Link>
                     )}
@@ -133,7 +149,7 @@ export default function Home() {
                 </CardHeader>
 
                 <CardContent className="space-y-6 flex-grow">
-                  <p className="text-sm text-zinc-300 leading-relaxed">
+                  <p className="text-sm text-zinc-600 leading-relaxed">
                     {project.description}
                   </p>
                 </CardContent>
@@ -144,7 +160,70 @@ export default function Home() {
                       <Badge
                         key={tech}
                         variant="secondary"
-                        className="bg-zinc-950/50 border border-zinc-800 text-zinc-300 font-normal px-2.5 py-0.5"
+                        className="bg-zinc-100 hover:bg-zinc-200 border border-zinc-200 text-zinc-700 font-medium px-2.5 py-0.5"
+                      >
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
+                </CardFooter>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        {/* SECTION 2: SIDE PROJECTS */}
+        <section className="space-y-6 pt-6">
+          <h2 className="text-2xl font-semibold border-b border-zinc-200 pb-4 text-zinc-900">Side Projects</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {sideProjects.map((project) => (
+              <Card
+                key={project.id}
+                className="bg-white border-zinc-200 flex flex-col transition-all duration-300 hover:border-zinc-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-zinc-200/50 overflow-hidden group"
+              >
+                {/* Komponen Gambar */}
+                {project.imageUrl && (
+                  <div className="relative w-full h-48 sm:h-56 overflow-hidden border-b border-zinc-100 bg-zinc-100">
+                    <Image
+                      src={project.imageUrl}
+                      alt={`Screenshot ${project.title}`}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                )}
+
+                <CardHeader>
+                  <div className="flex justify-between items-start gap-4">
+                    <div>
+                      <CardTitle className="text-xl text-zinc-900">{project.title}</CardTitle>
+                      <CardDescription className="text-zinc-600 mt-1 font-medium">
+                        {project.role}
+                      </CardDescription>
+                    </div>
+                    {project.link && project.link !== "#" && (
+                      <Link href={project.link} target="_blank" rel="noopener noreferrer" aria-label={`Kunjungi ${project.title}`}>
+                        <Button variant="ghost" size="icon" className="hover:bg-zinc-100 text-zinc-500 shrink-0">
+                          <ExternalLink className="h-5 w-5" />
+                        </Button>
+                      </Link>
+                    )}
+                  </div>
+                </CardHeader>
+
+                <CardContent className="space-y-6 flex-grow">
+                  <p className="text-sm text-zinc-600 leading-relaxed">
+                    {project.description}
+                  </p>
+                </CardContent>
+
+                <CardFooter className="pt-0">
+                  <div className="flex flex-wrap gap-2">
+                    {project.techStack.map((tech) => (
+                      <Badge
+                        key={tech}
+                        variant="secondary"
+                        className="bg-zinc-100 hover:bg-zinc-200 border border-zinc-200 text-zinc-700 font-medium px-2.5 py-0.5"
                       >
                         {tech}
                       </Badge>
